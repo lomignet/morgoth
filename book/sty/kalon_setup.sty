@@ -1,0 +1,200 @@
+\usepackage{aeguill}
+
+%% Bidouilles des marges
+%\addtolength{\hoffset}{-2cm}
+%\addtolength{\textwidth}{2cm}
+
+\usepackage{geometry}
+
+%% \geometry{twoside,paperwidth=4.5in,paperheight=7.125in,inner=1.1cm,outer=0.8cm,bottom=1cm,top=1.5cm,headheight=0.5cm,headsep=0.2cm}
+\geometry{twoside,paperwidth=4.5in,paperheight=7.125in,inner=1.3cm,outer=0.9cm,bottom=1.2cm,top=1.5cm,headheight=0.5cm,headsep=0.2cm}
+%% \pdfpagewidth 4.5in
+%% \pdfpagewidth 7.125in
+\pdfpagewidth 6.14in
+\pdfpagewidth 9.21in
+
+
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{}
+\fancyhead[RO]{\bfseries\textsf{\thepage}}
+\fancyhead[RE]{\bfseries\textsf{Les~aventures~de~Morgoth}}
+\fancyhead[LO]{\bfseries\textsf{\leftmark}}
+\fancyhead[LE]{\bfseries\textsf{\thepage}}
+%\fancyhead{} % get rid of headers on plain pages
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+%% \fancyhead{} get rid of headers on plain pages
+%% \renewcommand{\headrulewidth}{0pt} % and the line
+\fancypagestyle{plain}{%
+\fancyhead{} % get rid of headers on plain pages
+\renewcommand{\headrulewidth}{0pt} % and the line
+}
+
+
+
+
+%% Quels livres faut-il imprimer?
+\newcommand{\imprimer}
+{
+\ifthenelse{\equal{\aimprimer}{integrole}}
+	{\input{preambule}
+	 \input{livrekalon}
+	 \input{livrebralic}
+	 \input{livremorgoth}
+	 \input{livresauvageons}
+	 \input{livredivers}}
+	{\input{livre\aimprimer}}
+}
+
+%% Couleur des différents liens
+\hypersetup{colorlinks,%
+						citecolor=black,%
+						filecolor=black,%
+						linkcolor=black,%
+						urlcolor=black%
+						}
+
+
+%% Avoir les noms de sections en Roman et non en Sans Serif
+\renewcommand{\thesection}{\Roman{section}}
+
+%% Dans le sommaire ne figurent que les livres et les chapitres
+\setcounter{tocdepth}{0}
+
+%% Page de titre
+\title{\includegraphics[width=1.00\textwidth]{kaltitre.png}}
+\title{plop}
+\author{$\mathfrak{par~ASP~Explorer}$}
+\date{\vfill Ceci n'est qu'une mise en page sans autorisation préalable des textes originaux de ASP Explorer, textes que l'on peut retrouver sur son site $<$\href{http://mapage.noos.fr/aspexpl}{mapage.noos.fr/aspexpl}$>$.}
+%% de toute facon, il n'y a pas de maketitle...
+
+
+\addto\captionsfrench{\renewcommand{\contentsname}{\sf Table des matières}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PARTIES
+\newcounter{livre}
+
+\newcommand{\thepartwordsacc}
+{ \ifcase \thelivre\or Premier\or Deuxième\or Troisième\or Quatrième\or Cinquième\or
+  Sixième\or Septième\or Huitième\or Neuvième\or Dixième\or Onzième\or Douzième\or
+  Treizième\or Quatorzième\or Quinzième\or Seizième\fi}
+\newcommand{\thepartwords}
+{ \ifcase \thelivre\or Premier\or Deuxieme\or Troisieme\or Quatrieme\or Cinquieme\or
+  Sixieme\or Septieme\or Huitieme\or Neuvieme\or Dixieme\or Onzieme\or Douzieme\or
+  Treizieme\or Quatorzieme\or Quinzieme\or Seizieme\fi}
+\def\@part[#1]#2{%
+    \addtocounter{livre}{1}
+    \ifnum \c@secnumdepth >-2\relax
+      \refstepcounter{part}%
+%      \addcontentsline{toc}{part}{\Large\hspace{-2cm}Livre \thepartwordsacc\hspace{1em}:\hspace{1em}#1}%
+    \else
+      \addcontentsline{toc}{part}{#1}%
+    \fi
+    \markboth{}{}%
+    {\centering
+     \interlinepenalty \@M
+     \normalfont
+     \ifnum \c@secnumdepth >-2\relax
+    %   \thickhrulefill
+%       \begingroup \huge \quad \lmagie{Livre\nobreakspace\thepartwords} \quad \endgroup
+     %  \thickhrulefill
+       \par
+       \vskip 60\p@
+     \fi
+     \Huge \lmagie{#2}\par
+     \vfill \hfill \normalsize $\mathfrak{par~ASP~Explorer}$\par
+     \hfill \normalsize $<$\href{http://mapage.noos.fr/aspexpl}{mapage.noos.fr/aspexpl}$>$}
+    \@endpart}
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPITRES
+\@addtoreset{chapter}{part}
+
+\newcommand{\res}[1]
+{\\\rm\itshape\footnotesize#1}
+
+\newcommand{\thechapterwords}
+{ \ifcase \thechapter\or Premier\or Deuxieme\or Troisieme\or Quatrieme\or Cinquieme\or
+  Sixieme\or Septieme\or Huitieme\or Neuvieme\or Dixieme\or Onzieme\or Douzieme\or
+  Treizieme\or Quatorzieme\or Quinzieme\or Seizieme\fi}
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \centering \reset@font
+        \thickhrulefill\quad
+%        \scshape \@chapapp{} \thechapterwords
+				\lmagie{Chapitre~\thechapterwords }
+        \quad \thickhrulefill
+        \par\nobreak
+        \vspace*{10\p@}%
+        \interlinepenalty\@M
+        \hrule
+        \vspace*{10\p@}%
+        \Huge \sffamily #1\par\nobreak
+        \par
+        \vspace*{10\p@}%
+        \hrule
+    \vskip 60\p@ 
+  }\chaptermark{#1}}
+\def\@makeschapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \centering \reset@font
+        \thickhrulefill
+        \par\nobreak
+        \vspace*{10\p@}%
+        \interlinepenalty\@M
+        \hrule
+        \vspace*{10\p@}%
+        \Huge \bfseries #1\par\nobreak
+        \par
+        \vspace*{10\p@}%
+        \hrule
+    \vskip 5\p@
+  }\chaptermark{#1}}
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTIONS
+\def\section{\@ifstar\unnumberedsection\numberedsection}
+\def\numberedsection{\@ifnextchar[%]
+  \numberedsectionwithtwoarguments\numberedsectionwithoneargument}
+\def\unnumberedsection{\@ifnextchar[%]
+  \unnumberedsectionwithtwoarguments\unnumberedsectionwithoneargument}
+\def\numberedsectionwithoneargument#1{\numberedsectionwithtwoarguments[#1]{#1}}
+\def\unnumberedsectionwithoneargument#1{\unnumberedsectionwithtwoarguments[#1]{#1}}
+\def\numberedsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \hspace{100pt}
+  \vskip 3ex\goodbreak
+  \hspace{30pt}\refstepcounter{section}%
+  \noindent
+  \begingroup
+  \leavevmode\Large\bfseries
+  \llap{\thesection\quad}%
+  #2
+  \par
+  \endgroup
+  \vskip 2ex\nobreak
+  \addcontentsline{toc}{section}{%
+    \protect\numberline{\thesection}%
+    #1}%
+  }
+\def\unnumberedsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \hspace{100pt}
+  \vskip 3ex\goodbreak
+  \noindent
+  \begingroup
+  \leavevmode\Large\bfseries\raggedright
+  \leavevmode\Large\bfseries\raggedright
+  #2
+  \par
+  \endgroup
+  \vskip 2ex\nobreak
+  \addcontentsline{toc}{section}{%
+    #1}%
+}
+
+

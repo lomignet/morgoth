@@ -1,0 +1,92 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% - affiche	: cadre centré (75%)
+% - journal	: cadre centré (90%)
+% - citation: minipage centrée (75%) italique roman
+% - lettre  : italique roman
+% - poeme		: droite italique
+% - enigme	: gauche italique
+% - chant		: gauche italique
+% - normes	: gauche italique
+% - magie   : gauche italique
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{affiche}
+{
+\begin{center}
+\begin{minipage}[c]{0.75\textwidth}
+\begin{tabular}{||c||}
+\hline\hline\rule{0pt}{5ex}\\
+}
+{
+\rule{0pt}{5ex}\\
+\hline\hline
+\end{tabular}
+\end{minipage}
+\end{center}
+}
+
+\newenvironment{journal}
+{
+\begin{center}
+\begin{tabular}{||c||}
+\hline\hline\rule{0pt}{5ex}\\
+\begin{minipage}[c]{0.9\textwidth}
+}
+{
+\end{minipage}
+\\\rule{0pt}{5ex}\\
+\hline\hline
+\end{tabular}
+\end{center}
+}
+
+\renewenvironment{citation}
+{
+\begin{center}
+\begin{minipage}{0.75\textwidth}
+\rm \it
+}
+{
+\end{minipage}
+\end{center}
+}
+
+\newenvironment{lettre}
+{\rm \it}
+{~\\}
+
+\newenvironment{poeme}
+{\begin{flushright}\rm\it}
+{\end{flushright}}
+
+\newenvironment{enigme}
+{\rm\it}
+{~\\}
+
+\newenvironment{chant}
+{\rm\it}
+{~\\}
+
+\newenvironment{normes}
+{\rm\it}
+{~\\}
+
+\newenvironment{magie}
+{\rm\it}
+{~\\}
+
+%% Environnement de la petite intro en tête de chapitre
+\newenvironment{intro}
+{\begin{center}
+	\rule{0.8\textwidth}{1pt}
+		\begin{minipage}{0.75\textwidth}~\\}
+{		\\\end{minipage}
+	\rule{0.8\textwidth}{1pt}
+\end{center}}
+
+%% Environnement de la petite outro en fin de chapitre
+\newenvironment{outro}
+{ \vspace{\stretch{1}}
+\begin{center}
+}
+{\end{center}}
+
